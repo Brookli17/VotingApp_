@@ -13,7 +13,11 @@
 ## Admin DashBoard
 ![image](https://github.com/Brookli17/VotingApp_/assets/91592513/79a1364b-5646-4c66-8dce-416548c6955b)
 
-
+## Tech Stack 
+- **Backend** : Spring Boot , Java
+- **Technology** : JPA , Hibernate , Spring Security , Thymeleaf
+- **DataBase** : MySql
+- **ForntEnd** : HTML , Css , JS , Bootstrap.
 
 
 
