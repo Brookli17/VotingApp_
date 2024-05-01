@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http=www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+	<link th:href="@{/css/main.css}" rel="stylesheet">
+	<style>
+		footer {
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			height: 50px;
+			/* adjust this as needed */
+		}
+
+		.active>.page-link,
+		.page-link.active {
+			color: white;
+			background-color: black;
+			border-color: black;
+		}
+
+		.active>.page-link,
+		.page-link.active {
+			margin-bottom: 10px;
+
+		}
+
+		div.dataTables_wrapper div.dataTables_filter label {
+			margin-bottom: 10px;
+		}
+
+		div.dataTables_wrapper div.dataTables_paginate {
+			margin-top: 10px;
+		}
+
+		.table {
+			border-radius: 5px;
+		}
+	</style>
+</head>
+
+<body class="bg-secondary">
+
+	<div th:include="nav :: nav"></div>
+
+	<div class="container text-center mt-4">
+		<div class="row justify-content-center">
+			<div class="col-md-2">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Total Users</h5>
+						<p class="card-text fw-bolder fs-5" th:text="${usersCount}"></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Total Votes</h5>
+						<p class="card-text fw-bolder fs-5" th:text="${totalVotes}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="card w-50 position-absolute top-50 start-50 translate-middle mt-5">
+		<h5 class="card-title text-center fw-bold mt-3">Voting Details</h5>
+		<div class="card-body">
+
+			<table id="example" class="table table-striped" style="width:100%">
+				<thead>
+					<tr>
+						<th class="text-center bg-dark fw-bold text-light text-capitalize">candidateName</th>
+						<th class="text-center bg-dark fw-bold text-light text-capitalize">total vote count</th>
+						<th class="text-center bg-dark fw-bold text-light text-capitalize">Actions</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="v: ${votes}">
+						<td class="text-center text-capitalize bg-light" th:text="${v.candidateName}"></td>
+						<td class="text-center text-capitalize bg-light" th:text="${v.total}"></td>
+						<td class="text-center"><a th:href="@{/delete(candidateName=${v.candidateName})}"><i
+									class="bi bi-trash3 text-dark"></i></a></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<a href="/" class="btn btn-dark text-light">Back</a>
+		</div>
+	</div>
+
+
+	<div th:include="footer :: footer"></div>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			$('#example').DataTable();
+		});
+	</script>
+
+</body>
+
+</html>
